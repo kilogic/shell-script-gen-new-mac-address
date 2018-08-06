@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Some distros restrict to changing addresses that follow the following convention: 
+# Universal vs Locally administerd
+# Some distros only allow the following (locally administered) address convention:
 # x2-xx-xx-xx-xx-xx
 # x6-xx-xx-xx-xx-xx
 # xA-xx-xx-xx-xx-xx
@@ -48,10 +49,11 @@ if [ ! "${UAA}" == true ]; then
 
   echo "A locally administered address (LAA) will be generaged. (default)"
 
-  # generate a 2, 6, A, or E unless 
+  # generate a 2, 6, A, or E 
   LAA_SECOND_CHARACTER=$(cat /dev/urandom | tr -dc '26AE' | fold -w 1 | head -n 1)
 
-  # replace second character of the delimeted unique id for one of the allowed ones (use double quotes in the sed command's expression to interpolate the variable's value
+  # replace second character of the delimeted unique id for one of the allowed ones
+  # (use double quotes in the sed command's expression to interpolate the variable's value)
   LAA_UID=$(echo "${TWELVE_CHAR_HEX_UID}" | sed "s/\(^.\)\([0-9A-F]\)/\1${LAA_SECOND_CHARACTER}/")
   
   MAC_ADDRESS="${LAA_UID}"
