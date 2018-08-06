@@ -9,7 +9,7 @@
 
 
 usage() {
-  echo "Usage: $0 [-h] | [-u] [-d '<string>' | -d \"<string>\"]" 1>&2
+  echo "Usage: $0 [-h] | [-u] [-d <string>]" 1>&2
   exit 1
 }
 
@@ -72,5 +72,4 @@ fi
 
 echo "${MAC_ADDRESS}"
 
-exit
-
+exit 0
